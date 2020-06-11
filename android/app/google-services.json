@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "70372858998",
+    "firebase_url": "https://integrated-nith-management-app.firebaseio.com",
+    "project_id": "integrated-nith-management-app",
+    "storage_bucket": "integrated-nith-management-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70372858998:android:84483102a1a0916970d357",
+        "android_client_info": {
+          "package_name": "com.example.integratednithmanagementapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70372858998-l5rua9uo2fjb8qtt9uqev3llvku8f0us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.integratednithmanagementapp",
+            "certificate_hash": "e41fa45bf367abffffe25df6ca55dfed956b8941"
+          }
+        },
+        {
+          "client_id": "70372858998-km2ng6kc8oh7e0dss5fo8d2i1got6otd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf-3zMchnp8w629XzKdoEwiTdRDpWNwm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70372858998-km2ng6kc8oh7e0dss5fo8d2i1got6otd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
