@@ -18,14 +18,14 @@ class FirestoreDatabase implements Database {
   @override
   Future<void> setEvent({Event data}) async =>
       _service.setData(
-        path: APIPath.event(uid: uid),
+        path: APIPath.event(uid: uid, eventId: data.id),
         data: data.toMap(),
       );
 
   @override
   Stream<List<Event>> eventStream({String date}) =>
       _service.collectionStream(
-          path: APIPath.event(uid: uid),
+          path: APIPath.events(uid: uid),
           queryBuilder: (query) => query.where('date', isEqualTo: date),
           builder: (data, documentID) =>
               Event.fromMap(value: data, id: documentID)

@@ -21,24 +21,20 @@ class Event {
   String description;
   bool urgent;
   String type;
-  TimeOfDay startTime;
+  String startTime;
   bool done;
-  TimeOfDay endTime;
+  String endTime;
   String date;
 
   String get startEnd {
-    String _startHour = this.startTime.hour.toString().padLeft(2, '0');
-    String _startMin = this.startTime.minute.toString().padLeft(2, '0');
     if (this.endTime != null) {
-      String _endHour = this.endTime.hour.toString().padLeft(2, '0');
-      String _endMin = this.endTime.minute.toString().padLeft(2, '0');
-      return _startHour + ':' + _startMin + '-' + _endHour + ':' + _endMin;
+      return '$startTime-$endTime';
     } else {
-      return _startHour + ':' + _startMin;
+      return startTime;
     }
   }
 
-  factory Event.fromMap({Map<dynamic, dynamic> value, String id}) {
+  factory Event.fromMap({Map<String, dynamic> value, String id}) {
     return Event(
       id: id,
       title: value['title'],
@@ -52,8 +48,8 @@ class Event {
     );
   }
 
-  Map<dynamic, dynamic> toMap() {
-    return <dynamic, dynamic>{
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
       'id': this.id,
       'title': this.title,
       'description': this.description,

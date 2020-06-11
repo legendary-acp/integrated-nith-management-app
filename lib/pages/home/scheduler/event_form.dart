@@ -11,13 +11,15 @@ class EventForm {
   String description = '';
   bool urgent = false;
   String type = '';
-  TimeOfDay startTime;
-  TimeOfDay endTime;
+  String startTime;
+  String endTime;
   String date = '';
 
   List eventTypes = [
     'Class',
     'HomeWork',
+    'Meeting',
+    'Assignment',
     'Shopping',
   ];
 
@@ -30,20 +32,26 @@ class EventForm {
   }
 
   void updateStartTime(DateTime dateTime) {
-    this.startTime = TimeOfDay.fromDateTime(dateTime);
+    this.startTime = _time(dateTime);
   }
 
   void updateEndTime(DateTime dateTime) {
-    this.endTime = TimeOfDay.fromDateTime(dateTime);
+      this.endTime = _time(dateTime);
   }
 
   void updateDate(DateTime dateTime) {
-    this.date = _date(dateTime);
+      this.date = _date(dateTime);
   }
 
   String _date(DateTime dateTime) {
     String date = dateTime.toIso8601String().substring(0, 10);
     return date;
+  }
+
+  String _time(DateTime time){
+    String hour =time.hour.toString().padLeft(2,'0');
+    String min = time.minute.toString().padLeft(2,'0');
+    return '$hour:$min';
   }
 
   Future<void> submit(BuildContext context) async {

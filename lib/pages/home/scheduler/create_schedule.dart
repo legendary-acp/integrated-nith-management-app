@@ -3,26 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:integratednithmanagementapp/custom_widget/custom_button.dart';
 import 'package:integratednithmanagementapp/pages/home/scheduler/event_form.dart';
-import 'package:integratednithmanagementapp/pages/home/scheduler/event_manager.dart';
-import 'package:integratednithmanagementapp/services/database.dart';
-import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class CreateSchedule extends StatefulWidget {
-  CreateSchedule({Key key, this.eventForm}) : super(key: key);
+  CreateSchedule({@required this.eventForm});
 
   final EventForm eventForm;
-
-  static Widget create(BuildContext context) {
-    final database = Provider.of<Database>(context, listen: false);
-    final manager = EventManager(database: database);
-    return Provider<EventForm>(
-      create: (_) => EventForm(manager: manager),
-      child: Consumer<EventForm>(
-        builder: (context, eventForm, _) =>
-            CreateSchedule(eventForm: eventForm),
-      ),
-    );
-  }
 
   @override
   _CreateScheduleState createState() => _CreateScheduleState();

@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:integratednithmanagementapp/model/event_model.dart';
 import 'package:integratednithmanagementapp/pages/home/scheduler/create_schedule.dart';
+import 'package:integratednithmanagementapp/pages/home/scheduler/event_form.dart';
+import 'package:integratednithmanagementapp/pages/home/scheduler/event_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:integratednithmanagementapp/services/database.dart';
 
 class Scheduler extends StatefulWidget {
   @override
@@ -13,14 +17,6 @@ class Scheduler extends StatefulWidget {
 
 class _SchedulerState extends State<Scheduler> {
   final _calendarController = CalendarController();
-  Event event = Event(
-    date: '11/July/2020',
-    title: 'Physics',
-    description: 'Do homework from page 12 to 45',
-    startTime: TimeOfDay(hour: 08, minute: 00),
-    endTime: TimeOfDay(hour: 10, minute: 00),
-    type: 'HomeWork',
-  );
 
   @override
   void dispose() {
@@ -89,17 +85,24 @@ class _SchedulerState extends State<Scheduler> {
 
   Widget _buildEvents() {
     final children = <Widget>[];
-    for (int i = 0; i < 10; i++) {
-      children.add(_buildCard(event: event));
-    }
     return Expanded(
       child: Container(
+        width: MediaQuery.of(context).size.width,
         color: Colors.grey[200],
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(6, 2, 6, 0),
             child: Column(
-              children: children,
+              children: children.isEmpty? children :
+                  <Widget>[
+                    Text(
+                      'Nothing to show',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 40,
+                      ),
+                    )
+                  ],
             ),
           ),
         ),
@@ -191,8 +194,14 @@ class _SchedulerState extends State<Scheduler> {
   }
 
   addEvent(BuildContext context) {
-    return Scaffold(
-      body: CreateSchedule.create(context),
+    Database database = Provider.of<Database>(context, listen: false);
+    EventManager eventManager = EventManager(database: database);
+    EventForm eventForm = EventForm(manager: eventManager);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context) => CreateSchedule(
+                eventForm: eventForm,
+              )),
     );
   }
 }
