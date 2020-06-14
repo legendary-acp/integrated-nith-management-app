@@ -13,30 +13,30 @@ The website aims to achieve automation of following task in its initial phase:
 - Hostel Complaint System
 
 ## TODO
-[X] Signin Authentication
-    [X] Google Signin
-    [X] Facebook Signin
-    [X] Email Signin
-[] Home Screen
-    [] Chat
-    [] Attendance Graph
-    [] Mess Menu
-[] Scheduler Section
-    [X] Tasks on calender
-    [X] Add tasks to calender
-    [] Show urgent tasks
-[] Profile Section
-    [X] User Name
-    [X] Fetch Info from servers
-    [] Store Additional info from server
-[] Quiz Section
-    [] Available Quiz
-    [] Attempt Quiz
-    [] Get Score of Quiz
+- [x] Signin Authentication
+    - [x] Google Signin
+    - [x] Facebook Signin
+    - [x] Email Signin
+- [] Home Screen
+    - [] Chat
+    - [] Attendance Graph
+    - [] Mess Menu
+- [] Scheduler Section
+    - [X] Tasks on calender
+    - [X] Add tasks to calender
+    - [] Show urgent tasks
+- [] Profile Section
+    - [X] User Name
+    - [X] Fetch Info from servers
+    - [] Store Additional info from server
+- [] Quiz Section
+    - [] Available Quiz
+    - [] Attempt Quiz
+    - [] Get Score of Quiz
 
 ``Additional Tweaks:``
-    [] Error handling Dialog box
-    [] Loading state handling at various places
+    - [] Error handling Dialog box
+    - [] Loading state handling at various places
     
 ## License
 
