@@ -34,7 +34,7 @@ The website aims to achieve automation of following task in its initial phase:
     - [ ] Attempt Quiz
     - [ ] Get Score of Quiz
 
-Additional Tweaks:
+- Additional Tweaks:
     - [ ] Error handling Dialog box
     - [ ] Loading state handling at various places
     
