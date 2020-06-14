@@ -1,7 +1,7 @@
 # NITH-Management
 This repository contains a app that helps in bringing some of the management tasks of NITH online. This app is designed using flutter framework and is still under construction. Feel free to contribute 😉.
 
-## Tasks automated by site
+## Tasks automated by App
 
 The website aims to achieve automation of following task in its initial phase:
 - Students Attendance Management
@@ -12,7 +12,32 @@ The website aims to achieve automation of following task in its initial phase:
 - Hospital Management System
 - Hostel Complaint System
 
+## TODO
+[X] Signin Authentication
+    [X] Google Signin
+    [X] Facebook Signin
+    [X] Email Signin
+[] Home Screen
+    [] Chat
+    [] Attendance Graph
+    [] Mess Menu
+[] Scheduler Section
+    [X] Tasks on calender
+    [X] Add tasks to calender
+    [] Show urgent tasks
+[] Profile Section
+    [X] User Name
+    [X] Fetch Info from servers
+    [] Store Additional info from server
+[] Quiz Section
+    [] Available Quiz
+    [] Attempt Quiz
+    [] Get Score of Quiz
 
+``Additional Tweaks:``
+    [] Error handling Dialog box
+    [] Loading state handling at various places
+    
 ## License
 
 ```
