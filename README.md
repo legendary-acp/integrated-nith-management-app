@@ -43,6 +43,7 @@ The website aims to achieve automation of following task in its initial phase:
 * Additional Tweaks:
     * [ ] Error handling Dialog box
     * [ ] Loading state handling at various places
+    * [ ] Designing theme for app
     
 ## License
 
