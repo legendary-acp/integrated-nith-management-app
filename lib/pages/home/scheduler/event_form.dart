@@ -10,7 +10,7 @@ class EventForm {
   String title = '';
   String description = '';
   bool urgent = false;
-  String type = '';
+  String type = 'Class';
   String startTime;
   String endTime;
   String date = '';
@@ -22,6 +22,7 @@ class EventForm {
     'Assignment',
     'Shopping',
   ];
+
 
   void updateEventDetails(
       {String title, String description, bool urgent, String type}) {

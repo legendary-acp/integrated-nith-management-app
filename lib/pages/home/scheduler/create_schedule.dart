@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+// TODO: For rich text field
+import 'package:zefyr/zefyr.dart';
+
 import 'package:integratednithmanagementapp/custom_widget/custom_button.dart';
 import 'package:integratednithmanagementapp/pages/home/scheduler/event_form.dart';
+
 
 // ignore: must_be_immutable
 class CreateSchedule extends StatefulWidget {

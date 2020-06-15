@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:integratednithmanagementapp/pages/home/bottom_bar/tab_items.dart';
+import 'package:integratednithmanagementapp/shared/constants.dart';
+
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar(
-      {@required this.currentTab,
-      @required this.onSelectTab,
-      @required this.widgetBuilders,});
+  const BottomNavBar({
+    @required this.currentTab,
+    @required this.onSelectTab,
+    @required this.widgetBuilders,
+  });
 
   final TabItem currentTab;
   final ValueChanged<TabItem> onSelectTab;
@@ -28,17 +32,15 @@ class BottomNavBar extends StatelessWidget {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: [
         _buildItem(TabItem.home),
-        _buildItem(TabItem.calender),
-        _buildItem(TabItem.profile),
-        _buildItem(TabItem.statistics),
+        _buildItem(TabItem.scheduler),
+        _buildItem(TabItem.quiz),
         _buildItem(TabItem.notification),
+        _buildItem(TabItem.profile),
       ],
       onTap: (index) => onSelectTab(TabItem.values[index]),
       currentIndex: currentTab.index,

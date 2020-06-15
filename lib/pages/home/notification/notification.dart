@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class Notifications extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _NotificationsState createState() => _NotificationsState();
 }
 
-class _HomeState extends State<Home> {
+class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Home'),
-    );
+    return Container();
   }
 }
+

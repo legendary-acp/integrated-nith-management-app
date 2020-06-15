@@ -61,4 +61,5 @@ class Event {
       'date': this.date,
     };
   }
+
 }

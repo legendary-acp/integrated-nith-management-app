@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:integratednithmanagementapp/model/event_model.dart';
 import 'package:integratednithmanagementapp/services/database.dart';
 
@@ -7,15 +7,19 @@ class EventManager {
 
   final Database database;
 
-  Future<List> getAllEventsByDate(String date) async {
-    // TODO: implement function to get list of all events of particular date
-    return [];
+  Future<List<Event>> getAllEventsByDate(String date) async {
+    List requiredEvents;
+    // FIXME: Error is in this line
+    requiredEvents = await database.eventStream(date: date).toList();
+    return requiredEvents;
   }
 
   Future<void> addEvent(Event event) async {
-    // TODO: implement function to add event to database
     await database.setEvent(data: event);
-    print('Data added');
+  }
+
+  Future<void> deleteEvent(Event event) async{
+    await database.deleteEvent(data: event);
   }
 
   Future<List> getAllUrgentEvent() async {
@@ -23,7 +27,9 @@ class EventManager {
     return [];
   }
 
-  Future<void> markEventAsDone(String uid) async {
-    // TODO: Implement function to mark event as done
+  Future<void> markEventAsDone(Event event) async {
+    event.done = true;
+    database.updateEvent(data: event);
   }
 }
+

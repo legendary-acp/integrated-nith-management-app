@@ -19,16 +19,22 @@ The website aims to achieve automation of following task in its initial phase:
     * [x] Email Signin
 * [ ] Home Screen
     * [ ] Chat
+        * [ ] Search for user
+        * [ ] Messaging user
+        * [ ] Image sharing functionality
     * [ ] Attendance Graph
     * [ ] Mess Menu
 * [ ] Scheduler Section
     * [X] Tasks on calender
     * [X] Add tasks to calender
-    * [ ] Show urgent tasks
+    * [X] Show urgent tasks
+    * [ ] Rich text for Description (using zefyr)
+    * [ ] Event Details on clicking on event
 * [ ] Profile Section
     * [X] User Name
-    * [X] Fetch Info from servers
+    * [ ] Fetch Info from servers
     * [ ] Store Additional info from server
+    * [ ] Add change profile picture option 
 * [ ] Quiz Section
     * [ ] Available Quiz
     * [ ] Attempt Quiz
