@@ -45,6 +45,8 @@ The website aims to achieve automation of following task in its initial phase:
     * [ ] Loading state handling at various places
     * [ ] Designing theme for app
     
+*NOTE*- Request more [feature](https://github.com/legendary-acp/integrated-nith-management-app/issues/new?labels=bug&template=bug_report.md) 
+
 ## License
 
 ```
