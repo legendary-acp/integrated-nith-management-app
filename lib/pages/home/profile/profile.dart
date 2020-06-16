@@ -10,14 +10,14 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
     AuthBase auth = Provider.of<AuthBase>(context);
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: Stack(children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: 30),
-            Row(
+    return Stack(children: <Widget>[
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
@@ -37,61 +37,59 @@ class Profile extends StatelessWidget {
                     })
               ],
             ),
-            SizedBox(height: 30),
-            Center(
-                child: ProfileAvatar(
+          ),
+          Center(
+            child: ProfileAvatar(
               photoUrl: user.photoURL,
               radius: 60.0,
-            )),
-            SizedBox(
-              height: 70.0,
             ),
-            DataField(
-              entryName: 'Name',
-              entryValue: user.displayName != null ? user.displayName : 'User-${user.uid}',
+          ),
+          SizedBox(
+            height: 50.0,
+          ),
+          Container(
+            height: (MediaQuery.of(context).size.height-375),
+            padding: EdgeInsets.only(left: 20),
+            child: ListView(
+              children: <Widget>[
+                DataField(
+                  entryName: 'Name',
+                  entryValue: user.displayName != '' ? user.displayName : 'N/A',
+                  edit: (){print(user.displayName);},
+                ),
+                Divider(
+                  thickness: 1,
+                ),
+                DataField(
+                  entryName: 'Email',
+                  entryValue: user.email != '' ? user.email : 'N/A',
+                  edit: (){print("Pressed");},
+                ),
+                Divider(
+                  thickness: 1,
+                ),
+                DataField(
+                  entryName: 'Phone Number',
+                  entryValue: user.phoneNumber != '' ? user.phoneNumber : 'N/A',
+                  edit: (){print("Pressed");},
+                )
+              ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Divider(
-              thickness: 1,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            DataField(
-              entryName: 'Email',
-              entryValue: user.email != null ? user.email : 'example@example.com',
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Divider(
-              thickness: 1,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            DataField(
-              entryName: 'Phone Number',
-              entryValue:
-                  user.phoneNumber != null ? user.phoneNumber : '+91-XXXXX-XXXXX',
-            )
-          ],
-        ),
-        CustomIconButton(
-          top: 200,
-          left: 175,
-          bgColor: Colors.indigo,
-          iconColor: Colors.white,
-          size: 25.0,
-          onPress: _onPress,
-        ),
-      ]),
-    );
+          ),
+        ],
+      ),
+      CustomIconButton(
+        top: 200,
+        left: (MediaQuery.of(context).size.width / 2 ),
+        bgColor: Colors.indigo,
+        iconColor: Colors.white,
+        size: 25.0,
+        onPress: _changeProfilePic,
+      ),
+    ]);
   }
 
-  _onPress() {
+  _changeProfilePic() {
     //TODO: Implement update profile pic feature
   }
 }

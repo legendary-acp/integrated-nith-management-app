@@ -270,7 +270,7 @@ class _SchedulerState extends State<Scheduler> {
           child: FloatingActionButton(
             child: Icon(
               Icons.add,
-              size: 40,
+              size: 30,
             ),
             onPressed: () => addEvent(context),
           ),

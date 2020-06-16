@@ -25,6 +25,9 @@ The website aims to achieve automation of following task in its initial phase:
         * [ ] Image sharing functionality
     * [ ] Attendance Graph
     * [ ] Mess Menu
+    * [ ] Time Table
+    * [ ] Date Sheet 
+    * [ ] Notices 
 * [ ] Scheduler Section
     * [X] Tasks on calender
     * [X] Add tasks to calender
