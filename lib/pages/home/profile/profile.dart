@@ -2,10 +2,78 @@ import 'package:flutter/material.dart';
 import 'package:integratednithmanagementapp/custom_widget/avatar.dart';
 import 'package:integratednithmanagementapp/custom_widget/custom_icon_button.dart';
 import 'package:integratednithmanagementapp/custom_widget/data_field.dart';
-import 'package:provider/provider.dart';
+import 'package:integratednithmanagementapp/model/user_info_model.dart';
 import 'package:integratednithmanagementapp/services/auth.dart';
+import 'package:integratednithmanagementapp/services/database.dart';
+import 'package:provider/provider.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  Widget _buildDetailFields(UserDetails details) {
+    return ListView(
+      children: <Widget>[
+        DataField(
+          entryName: 'Name',
+          entryValue: details.displayName,
+          edit: () {
+            print(details.displayName);
+          },
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        DataField(
+          entryName: 'Roll No',
+          entryValue: details.rollNo,
+          edit: () {
+            print("Pressed");
+          },
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        DataField(
+          entryName: 'Email',
+          entryValue: details.email,
+          edit: () {
+            print("Pressed");
+          },
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        DataField(
+          entryName: 'Phone Number',
+          entryValue: details.mobileNo,
+          edit: () {
+            print("Pressed");
+          },
+        )
+      ],
+    );
+  }
+
+  Widget _buildDetails(BuildContext context, String uid) {
+    Database database = Provider.of<Database>(context);
+    return StreamBuilder(
+        stream: database.getUserInfo(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            print(snapshot.data);
+            UserDetails _details = snapshot.data ?? UserDetails(uid: uid);
+            return _buildDetailFields(_details);
+          } else {
+            return Align(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
@@ -48,39 +116,16 @@ class Profile extends StatelessWidget {
             height: 50.0,
           ),
           Container(
-            height: (MediaQuery.of(context).size.height-375),
+            height: (MediaQuery.of(context).size.height - 375),
+            width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.only(left: 20),
-            child: ListView(
-              children: <Widget>[
-                DataField(
-                  entryName: 'Name',
-                  entryValue: user.displayName != '' ? user.displayName : 'N/A',
-                  edit: (){print(user.displayName);},
-                ),
-                Divider(
-                  thickness: 1,
-                ),
-                DataField(
-                  entryName: 'Email',
-                  entryValue: user.email != '' ? user.email : 'N/A',
-                  edit: (){print("Pressed");},
-                ),
-                Divider(
-                  thickness: 1,
-                ),
-                DataField(
-                  entryName: 'Phone Number',
-                  entryValue: user.phoneNumber != '' ? user.phoneNumber : 'N/A',
-                  edit: (){print("Pressed");},
-                )
-              ],
-            ),
+            child: _buildDetails(context, user.uid),
           ),
         ],
       ),
       CustomIconButton(
         top: 200,
-        left: (MediaQuery.of(context).size.width / 2 ),
+        left: (MediaQuery.of(context).size.width / 2),
         bgColor: Colors.indigo,
         iconColor: Colors.white,
         size: 25.0,

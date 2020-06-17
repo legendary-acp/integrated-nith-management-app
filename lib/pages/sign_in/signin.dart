@@ -1,10 +1,6 @@
-// Description: Login Screen for the app
+// Description Login Screen for the app
 
-/*
-* For Future:
-* If you want to take more fields during registration add condition for them
-* and then use logic in submit button code
-* */
+// TODO: Add Name and Roll No validator. Currently using email validator that only checks if email is empty or not.
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +17,7 @@ class SignIn extends StatefulWidget {
   SignIn({@required this.manager, @required this.model});
 
   final SignInManager manager;
-  final model;
+  final EmailModel model;
 
   // To create this widgets
   static Widget create(BuildContext context) {
@@ -89,12 +85,9 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  void _register(BuildContext context) {
+  void _toggle(BuildContext context) {
     _emailController.clear();
     _passwordController.clear();
-    /*Navigator.of(context).push(CupertinoPageRoute<void>(
-      builder: (context) => Register.create(context),
-    ));*/
     widget.model.toggleFormType();
   }
 
@@ -108,11 +101,13 @@ class _SignInState extends State<SignIn> {
       children: <Widget>[
         LargeText(
           text: widget.model.largeText,
-          paddingTop: 100,
+          paddingTop: (MediaQuery.of(context).size.height/7),
+          color: Color(0xFFdaf8e3),
         ),
         SmallText(
           text: widget.model.smallText,
           paddingTop: 0,
+          color: Color(0xFFdaf8e3),
         ),
         SizedBox(
           height: 40,
@@ -152,8 +147,8 @@ class _SignInState extends State<SignIn> {
                       child: CustomButton(
                         pressed: widget.model.canSubmit ? _submit : null,
                         text: widget.model.buttonText,
-                        bgColor: Color(0xFF594CFC),
-                        textColor: Colors.white,
+                        bgColor: Color(0xFF02263C),
+                        textColor: Color(0xFF3b3b3b),
                       )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -162,7 +157,7 @@ class _SignInState extends State<SignIn> {
                         widget.model.bottomText1,
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Color(0xFF1034A6),
+                          color: Color(0xFF02263C),
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -174,7 +169,7 @@ class _SignInState extends State<SignIn> {
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
-                        onTap: () => _register(context),
+                        onTap: () => _toggle(context),
                       )
                     ],
                   ),
@@ -229,12 +224,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color(0xFF594CFC),
-          Color(0xFF61D8FA),
-          Color(0xFF9EF3C9)
-        ])),
+        color: Color(0xFF640F12),
         child: _buildLogin(context),
       ),
     );

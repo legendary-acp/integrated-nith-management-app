@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:integratednithmanagementapp/model/user_info_model.dart';
+import 'package:integratednithmanagementapp/services/api_path.dart';
 
 class User {
   User(
@@ -35,6 +38,7 @@ abstract class AuthBase {
 
 class Auth implements AuthBase {
   final _firebaseAuth = FirebaseAuth.instance;
+  final _firestoreInstance = Firestore.instance;
 
   User _userFromFirebase(FirebaseUser user) {
     return User(
@@ -44,6 +48,42 @@ class Auth implements AuthBase {
       photoURL: user.photoUrl,
       phoneNumber: user.phoneNumber,
     );
+  }
+
+  Future<void> _addUserInfo({UserDetails data, User user}) async {
+    final documentReference = _firestoreInstance.document(
+      APIPath.setUserInfo(uid: user.uid),
+    );
+    UserDetails userDetails;
+    if (data == null) {
+      userDetails = UserDetails(
+        uid: user.uid,
+        email: user.email,
+      );
+    } else {
+      userDetails = UserDetails(
+        uid: user.uid,
+        email: user.email,
+        displayName: data.displayName,
+        hostel: data.hostel,
+        branch: data.branch,
+        mobileNo: data.mobileNo,
+        year: data.year,
+        rollNo: data.rollNo,
+      );
+    }
+    await documentReference.updateData(userDetails.toMap());
+  }
+
+  Future<void> _checkUserInfo({User user}) async {
+    final DocumentReference reference =
+        Firestore.instance.document(APIPath.getUserInfo(uid: user.uid));
+    final Stream<DocumentSnapshot> snapshots = reference.snapshots();
+    final snapshot = snapshots.map((snapshot) =>
+        UserDetails.fromMap(value: snapshot.data, id: snapshot.documentID));
+    snapshot.listen((event) {
+      _addUserInfo(user: user, data: event);
+    });
   }
 
   @override
@@ -64,6 +104,7 @@ class Auth implements AuthBase {
             accessToken: googleAuth.accessToken,
           ),
         );
+        await _checkUserInfo(user: _userFromFirebase(authResult.user));
         return _userFromFirebase(authResult.user);
       } else {
         throw PlatformException(
@@ -91,6 +132,7 @@ class Auth implements AuthBase {
           accessToken: result.accessToken.token,
         ),
       );
+      await _checkUserInfo(user: _userFromFirebase(authResult.user));
       return _userFromFirebase(authResult.user);
     } else {
       throw PlatformException(
@@ -105,6 +147,7 @@ class Auth implements AuthBase {
       {String email, String password}) async {
     final authResult = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
+    await _checkUserInfo(user: _userFromFirebase(authResult.user));
     return _userFromFirebase(authResult.user);
   }
 
@@ -113,6 +156,7 @@ class Auth implements AuthBase {
       {String email, String password}) async {
     final authResult = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
+    await _checkUserInfo(user: _userFromFirebase(authResult.user));
     return _userFromFirebase(authResult.user);
   }
 

@@ -18,7 +18,7 @@ class EventManager {
     await database.setEvent(data: event);
   }
 
-  Future<void> deleteEvent(Event event) async{
+  Future<void> deleteEvent(Event event) async {
     await database.deleteEvent(data: event);
   }
 
@@ -32,4 +32,3 @@ class EventManager {
     database.updateEvent(data: event);
   }
 }
-

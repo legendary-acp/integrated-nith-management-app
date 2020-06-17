@@ -8,4 +8,39 @@ const Map<String, IconData> typeIcon = {
   'Shopping': Icons.shopping_cart,
 };
 
-enum TabItem { home, scheduler, quiz, notification, profile }
+enum TabItem {
+  home,
+  scheduler,
+  quiz,
+  notification,
+  profile,
+}
+
+enum Hostels {
+  Aravali,
+  KBH,
+  VBH,
+  MMH,
+  Satpura,
+  Shivalik,
+  DBH,
+  NBH,
+  Himgiri,
+  Himadri,
+  Udaygiri,
+  AGH,
+  PGH,
+}
+
+enum branch{
+  Arch,
+  Civil,
+  CSE,
+  CSEDD,
+  ECE,
+  ECEDD,
+  Mech,
+  Chem,
+  Electrical,
+  Material,
+}

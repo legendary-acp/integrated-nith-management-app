@@ -36,8 +36,8 @@ The website aims to achieve automation of following task in its initial phase:
     * [ ] Event Details on clicking on event
 * [ ] Profile Section
     * [X] User Name
-    * [ ] Fetch Info from servers
-    * [ ] Store Additional info from server
+    * [X] Fetch Info from servers
+    * [X] Store Additional info from server
     * [ ] Add change profile picture option 
 * [ ] Quiz Section
     * [ ] Available Quiz
@@ -52,7 +52,7 @@ The website aims to achieve automation of following task in its initial phase:
 **NOTE**- Request more [feature](https://github.com/legendary-acp/integrated-nith-management-app/issues/new?labels=enhancement&template=feature_request.md) 
 
 ## Test app 
-* Android:- [Link] (https://github.com/legendary-acp/integrated-nith-management-app/Apps/release.apk)
+* Android:- [Link](https://github.com/legendary-acp/integrated-nith-management-app/blob/master/Apps/release.apk)
 * IOS:- Sorry I don't have Mac to compile ☹️
 
 **NOTE** - App is still under development you may see some undeveloped portions in app 😉. If you find any issue with app you can add it [here](https://github.com/legendary-acp/integrated-nith-management-app/issues/new?labels=bug&template=bug_report.md)

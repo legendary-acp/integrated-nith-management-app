@@ -11,7 +11,7 @@ class EmailModel with EmailAndPasswordValidators, ChangeNotifier {
     this.password = '',
     this.isLoading = false,
     this.submitted = false,
-    this.formType =EmailFormType.signIn,
+    this.formType = EmailFormType.signIn,
   });
 
   final SignInManager manager;
@@ -30,27 +30,24 @@ class EmailModel with EmailAndPasswordValidators, ChangeNotifier {
         ? 'Need an account?'
         : 'Have an account?';
   }
+
   String get largeText {
-    return formType == EmailFormType.signIn
-        ? 'Login'
-        : 'Register';
+    return formType == EmailFormType.signIn ? 'Login' : 'Register';
   }
 
   String get smallText {
-    return formType == EmailFormType.signIn
-        ? 'Welcome Back'
-        : 'Hey There';
+    return formType == EmailFormType.signIn ? 'Welcome Back' : 'Hey There';
   }
 
   String get bottomText2 {
     return formType == EmailFormType.signIn ? ' Register' : ' Sign in';
   }
 
-  void toggleFormType(){
-    if(formType==EmailFormType.signIn)
-      formType=EmailFormType.register;
+  void toggleFormType() {
+    if (formType == EmailFormType.signIn)
+      formType = EmailFormType.register;
     else
-      formType=EmailFormType.signIn;
+      formType = EmailFormType.signIn;
     updateWith(
       email: '',
       password: '',
@@ -58,14 +55,18 @@ class EmailModel with EmailAndPasswordValidators, ChangeNotifier {
       submitted: false,
       formType: formType,
     );
-}
+  }
 
   void updatePassword(password) => updateWith(password: password);
 
   void updateEmail(email) => updateWith(email: email);
 
-  void updateWith(
-      {String email, String password, bool submitted, bool isLoading, EmailFormType formType}) {
+  void updateWith({
+      String email,
+      String password,
+      bool submitted,
+      bool isLoading,
+      EmailFormType formType}) {
     this.email = email ?? this.email;
     this.password = password ?? this.password;
     this.submitted = submitted ?? this.submitted;

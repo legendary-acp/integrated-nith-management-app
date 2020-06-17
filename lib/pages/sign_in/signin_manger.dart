@@ -1,17 +1,18 @@
 // DESCRIPTION: Manager for the signin methods
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:integratednithmanagementapp/services/auth.dart';
 
-class SignInManager{
+class SignInManager {
   SignInManager({
     @required this.auth,
   });
 
   final AuthBase auth;
 
-  Future<void> createUser({String email, String password} ) async {
+  Future<void> createUser({String email, String password}) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -20,7 +21,8 @@ class SignInManager{
     }
   }
 
-  Future<void> singInWithEmailAndPassword({String email, String password}) async {
+  Future<void> singInWithEmailAndPassword(
+      {String email, String password}) async {
     try {
       await auth.singInWithEmailAndPassword(email: email, password: password);
     } catch (e) {

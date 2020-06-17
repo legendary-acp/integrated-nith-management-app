@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:integratednithmanagementapp/pages/home/home_page.dart';
-import 'package:integratednithmanagementapp/services/database.dart';
 import 'package:provider/provider.dart';
 
+import 'package:integratednithmanagementapp/pages/home/home_page.dart';
+import 'package:integratednithmanagementapp/services/database.dart';
 import 'package:integratednithmanagementapp/services/auth.dart';
 import 'package:integratednithmanagementapp/pages/sign_in/signin.dart';
 
@@ -16,7 +16,6 @@ void main() => runApp(
       ),
     );
 
-// Landing page decider Widget
 class LandingDecider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
