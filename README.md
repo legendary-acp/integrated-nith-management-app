@@ -23,7 +23,6 @@ The website aims to achieve automation of following task in its initial phase:
         * [ ] Search for user
         * [ ] Messaging user
         * [ ] Image sharing functionality
-    * [ ] Attendance Graph
     * [ ] Mess Menu
     * [ ] Time Table
     * [ ] Date Sheet 
@@ -38,16 +37,21 @@ The website aims to achieve automation of following task in its initial phase:
     * [X] User Name
     * [X] Fetch Info from servers
     * [X] Store Additional info from server
+    * [X] Edit user information 
     * [ ] Add change profile picture option 
 * [ ] Quiz Section
     * [ ] Available Quiz
     * [ ] Attempt Quiz
     * [ ] Get Score of Quiz
+* [ ] Attendance Section
+    * [ ] Graphs of attendance for various subjects
+    * [ ] Attendance in table form
 
 * Additional Tweaks:
     * [ ] Error handling Dialog box
     * [ ] Loading state handling at various places
     * [ ] Designing theme for app
+    * [X] Make app responsive
     
 **NOTE**- Request more [feature](https://github.com/legendary-acp/integrated-nith-management-app/issues/new?labels=enhancement&template=feature_request.md) 
 

@@ -3,6 +3,7 @@ import 'package:integratednithmanagementapp/custom_widget/avatar.dart';
 import 'package:integratednithmanagementapp/custom_widget/custom_icon_button.dart';
 import 'package:integratednithmanagementapp/custom_widget/data_field.dart';
 import 'package:integratednithmanagementapp/model/user_info_model.dart';
+import 'package:integratednithmanagementapp/pages/home/profile/Dialogs.dart';
 import 'package:integratednithmanagementapp/services/auth.dart';
 import 'package:integratednithmanagementapp/services/database.dart';
 import 'package:provider/provider.dart';
@@ -13,14 +14,16 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  Widget _buildDetailFields(UserDetails details) {
+  Widget _buildDetailFields({UserDetails details, Database database}) {
+    Dialogs dialogs =
+        Dialogs(context: context, details: details, database: database);
     return ListView(
       children: <Widget>[
         DataField(
           entryName: 'Name',
           entryValue: details.displayName,
           edit: () {
-            print(details.displayName);
+            dialogs.showDisplayNameDialog();
           },
         ),
         Divider(
@@ -30,7 +33,7 @@ class _ProfileState extends State<Profile> {
           entryName: 'Roll No',
           entryValue: details.rollNo,
           edit: () {
-            print("Pressed");
+            dialogs.showRollNoDialog();
           },
         ),
         Divider(
@@ -39,20 +42,48 @@ class _ProfileState extends State<Profile> {
         DataField(
           entryName: 'Email',
           entryValue: details.email,
+          isEmail: true,
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        DataField(
+          entryName: 'Mobile No.',
+          entryValue: details.mobileNo,
           edit: () {
-            print("Pressed");
+            dialogs.showMobileNoDialog();
           },
         ),
         Divider(
           thickness: 1,
         ),
         DataField(
-          entryName: 'Phone Number',
-          entryValue: details.mobileNo,
+          entryName: 'Branch',
+          entryValue: details.branch,
           edit: () {
-            print("Pressed");
+            dialogs.showBranchDialog();
           },
-        )
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        DataField(
+          entryName: 'Year',
+          entryValue: details.year,
+          edit: () {
+            dialogs.showYearDialog();
+          },
+        ),
+        Divider(
+          thickness: 1,
+        ),
+        DataField(
+          entryName: 'Hostel',
+          entryValue: details.hostel,
+          edit: () {
+            dialogs.showHostelDialog();
+          },
+        ),
       ],
     );
   }
@@ -63,9 +94,8 @@ class _ProfileState extends State<Profile> {
         stream: database.getUserInfo(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
-            print(snapshot.data);
             UserDetails _details = snapshot.data ?? UserDetails(uid: uid);
-            return _buildDetailFields(_details);
+            return _buildDetailFields(details: _details, database: database);
           } else {
             return Align(
               child: CircularProgressIndicator(),
@@ -79,52 +109,54 @@ class _ProfileState extends State<Profile> {
     User user = Provider.of<User>(context);
     AuthBase auth = Provider.of<AuthBase>(context);
     return Stack(children: <Widget>[
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Profile',
-                  style: TextStyle(
-                    fontFamily: 'libre_baskerville',
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
+      SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: (MediaQuery.of(context).size.height / 20)),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Profile',
+                    style: TextStyle(
+                      fontFamily: 'libre_baskerville',
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.left,
                   ),
-                  textAlign: TextAlign.left,
-                ),
-                IconButton(
-                    icon: Icon(Icons.exit_to_app),
-                    iconSize: 30,
-                    onPressed: () {
-                      auth.signOut();
-                    })
-              ],
+                  IconButton(
+                      icon: Icon(Icons.exit_to_app),
+                      iconSize: 30,
+                      onPressed: () {
+                        auth.signOut();
+                      })
+                ],
+              ),
             ),
-          ),
-          Center(
-            child: ProfileAvatar(
-              photoUrl: user.photoURL,
-              radius: 60.0,
+            Center(
+              child: ProfileAvatar(
+                photoUrl: user.photoURL,
+                radius: (MediaQuery.of(context).size.height / 12),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 50.0,
-          ),
-          Container(
-            height: (MediaQuery.of(context).size.height - 375),
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.only(left: 20),
-            child: _buildDetails(context, user.uid),
-          ),
-        ],
+            SizedBox(
+              height: (MediaQuery.of(context).size.height / 20),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height * 0.53),
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.only(left: 20),
+              child: _buildDetails(context, user.uid),
+            ),
+          ],
+        ),
       ),
       CustomIconButton(
-        top: 200,
+        top: (MediaQuery.of(context).size.height * 0.29),
         left: (MediaQuery.of(context).size.width / 2),
         bgColor: Colors.indigo,
         iconColor: Colors.white,

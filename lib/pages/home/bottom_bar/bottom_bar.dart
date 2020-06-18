@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:integratednithmanagementapp/pages/home/bottom_bar/tab_items.dart';
 import 'package:integratednithmanagementapp/shared/constants.dart';
-
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -39,7 +37,7 @@ class BottomNavBar extends StatelessWidget {
         _buildItem(TabItem.home),
         _buildItem(TabItem.scheduler),
         _buildItem(TabItem.quiz),
-        _buildItem(TabItem.notification),
+        _buildItem(TabItem.attendance),
         _buildItem(TabItem.profile),
       ],
       onTap: (index) => onSelectTab(TabItem.values[index]),

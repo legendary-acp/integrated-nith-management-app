@@ -12,35 +12,6 @@ enum TabItem {
   home,
   scheduler,
   quiz,
-  notification,
+  attendance,
   profile,
-}
-
-enum Hostels {
-  Aravali,
-  KBH,
-  VBH,
-  MMH,
-  Satpura,
-  Shivalik,
-  DBH,
-  NBH,
-  Himgiri,
-  Himadri,
-  Udaygiri,
-  AGH,
-  PGH,
-}
-
-enum branch{
-  Arch,
-  Civil,
-  CSE,
-  CSEDD,
-  ECE,
-  ECEDD,
-  Mech,
-  Chem,
-  Electrical,
-  Material,
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:integratednithmanagementapp/pages/home/notification/notification.dart';
-import 'package:integratednithmanagementapp/pages/home/quiz/quiz_main.dart';
-import 'package:integratednithmanagementapp/pages/home/scheduler/scheduler.dart';
-import 'package:integratednithmanagementapp/pages/home/profile/profile.dart';
-import 'package:integratednithmanagementapp/shared/constants.dart';
+import 'package:integratednithmanagementapp/pages/home/attendance/attendance.dart';
 import 'package:integratednithmanagementapp/pages/home/bottom_bar/bottom_bar.dart';
 import 'package:integratednithmanagementapp/pages/home/home_main/home_main.dart';
+import 'package:integratednithmanagementapp/pages/home/profile/profile.dart';
+import 'package:integratednithmanagementapp/pages/home/quiz/quiz_main.dart';
+import 'package:integratednithmanagementapp/pages/home/scheduler/scheduler.dart';
+import 'package:integratednithmanagementapp/shared/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TabItem _currentTab = TabItem.scheduler;
+  TabItem _currentTab = TabItem.profile;
 
   void _select(TabItem tabItem) {
     setState(() {
@@ -29,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     TabItem.home: GlobalKey<NavigatorState>(),
     TabItem.scheduler: GlobalKey<NavigatorState>(),
     TabItem.quiz: GlobalKey<NavigatorState>(),
-    TabItem.notification: GlobalKey<NavigatorState>(),
+    TabItem.attendance: GlobalKey<NavigatorState>(),
     TabItem.profile: GlobalKey<NavigatorState>(),
   };
 
@@ -38,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       TabItem.home: (_) => Home(),
       TabItem.scheduler: (_) => Scheduler.create(context),
       TabItem.quiz: (_) => Quiz(),
-      TabItem.notification: (_) => Notifications(),
+      TabItem.attendance: (_) => Attendance(),
       TabItem.profile: (_) => Profile(),
     };
   }
@@ -48,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: widgetBuilders[_currentTab](context),
       bottomNavigationBar: BottomNavBar(
-      onSelectTab: _select,
+        onSelectTab: _select,
         currentTab: _currentTab,
         widgetBuilders: widgetBuilders,
       ),

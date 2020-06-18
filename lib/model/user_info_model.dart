@@ -45,4 +45,33 @@ class UserDetails {
         'branch': this.branch,
         'year': this.year,
       };
+
+  void updateDisplayName(String displayName) =>
+      updateWith(displayName: displayName);
+
+  void updateRollNo(String rollNo) => updateWith(rollNo: rollNo);
+
+  void updateMobileNo(String mobileNo) => updateWith(mobileNo: mobileNo);
+
+  void updateHostel(String hostel) => updateWith(hostel: hostel);
+
+  void updateBranch(String branch) => updateWith(branch: branch);
+
+  void updateYear(String year) => updateWith(year: year);
+
+  void updateWith({
+    String displayName,
+    String rollNo,
+    String mobileNo,
+    String hostel,
+    String branch,
+    String year,
+  }) {
+    this.displayName = displayName ?? this.displayName;
+    this.rollNo = rollNo ?? this.rollNo;
+    this.mobileNo = mobileNo ?? this.mobileNo;
+    this.hostel = hostel ?? this.hostel;
+    this.branch = branch ?? this.branch;
+    this.year = year ?? this.year;
+  }
 }
