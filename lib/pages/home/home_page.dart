@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TabItem _currentTab = TabItem.profile;
+  TabItem _currentTab = TabItem.attendance;
 
   void _select(TabItem tabItem) {
     setState(() {

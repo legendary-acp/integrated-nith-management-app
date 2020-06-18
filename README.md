@@ -44,8 +44,10 @@ The website aims to achieve automation of following task in its initial phase:
     * [ ] Attempt Quiz
     * [ ] Get Score of Quiz
 * [ ] Attendance Section
-    * [ ] Graphs of attendance for various subjects
-    * [ ] Attendance in table form
+    * [X] Graph for attendance for various subjects (UI)
+    * [X] Attendance in card form(UI)
+    * [ ] Attach UI to backend
+    
 
 * Additional Tweaks:
     * [ ] Error handling Dialog box
