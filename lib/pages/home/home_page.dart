@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       TabItem.home: (_) => Home(),
       TabItem.scheduler: (_) => Scheduler.create(context),
       TabItem.quiz: (_) => Quiz(),
-      TabItem.attendance: (_) => Attendance(),
+      TabItem.attendance: (_) => Attendance.show(context),
       TabItem.profile: (_) => Profile(),
     };
   }

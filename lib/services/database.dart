@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:integratednithmanagementapp/model/event_model.dart';
+import 'package:integratednithmanagementapp/model/subject_model.dart';
 import 'package:integratednithmanagementapp/model/user_info_model.dart';
 import 'package:integratednithmanagementapp/services/api_path.dart';
 import 'package:integratednithmanagementapp/services/firestore_service.dart';
@@ -14,6 +15,8 @@ abstract class Database {
   Future<void> updateEvent({Event data});
 
   Future<void> updateUserInfo({UserDetails info});
+
+  Stream<List<Subject>> subjectAttendanceStream({String rollNo});
 
   Stream<UserDetails> getUserInfo();
 
@@ -55,6 +58,15 @@ class FirestoreDatabase implements Database {
         builder: (data, documentId) =>
             UserDetails.fromMap(value: data, id: documentId),
       );
+
+  @override
+  Stream<List<Subject>> subjectAttendanceStream({String rollNo}) =>
+      _service.collectionStream(
+        path: APIPath.getAttendance(rollNo: rollNo),
+        builder: (data, documentID) =>
+            Subject.fromMap(value: data, id: documentID),
+      );
+
   @override
   Stream<List<Event>> eventStream({String date}) => _service.collectionStream(
         path: APIPath.events(uid: uid),

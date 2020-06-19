@@ -13,7 +13,7 @@ class AttendanceChart extends StatelessWidget {
       charts.Series(
         id: 'Attendance',
         data: subjects,
-        domainFn: (Subject sub, _) => sub.name,
+        domainFn: (Subject sub, _) => sub.code,
         measureFn: (Subject sub, _) => (sub.attendance / sub.total * 100),
         colorFn: (Subject sub, _) => sub.barColor,
       )
