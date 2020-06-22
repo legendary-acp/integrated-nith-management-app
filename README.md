@@ -14,10 +14,12 @@ The website aims to achieve automation of following task in its initial phase:
 - Hostel Complaint System
 
 ## TODO
-* [x] Signin Authentication
+* [x] Authentication
     * [x] Google Signin
     * [x] Facebook Signin
     * [x] Email Signin
+    * [X] Email SignUp
+    * [x] Create extra data on Sign Up
 * [ ] Home Screen
     * [ ] Chat
         * [ ] Search for user
@@ -43,10 +45,10 @@ The website aims to achieve automation of following task in its initial phase:
     * [ ] Available Quiz
     * [ ] Attempt Quiz
     * [ ] Get Score of Quiz
-* [ ] Attendance Section
+* [X] Attendance Section
     * [X] Graph for attendance for various subjects (UI)
     * [X] Attendance in card form(UI)
-    * [ ] Attach UI to backend
+    * [X] Attach UI to backend
     
 
 * Additional Tweaks:
