@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:integratednithmanagementapp/pages/home/quiz/questions.dart';
+import 'package:integratednithmanagementapp/pages/home/quiz/questions_manager.dart';
+import 'package:integratednithmanagementapp/services/database.dart';
+import 'package:provider/provider.dart';
 
 class Quiz extends StatefulWidget {
   @override
@@ -7,6 +10,16 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  _openQuiz(BuildContext context) {
+    final database = Provider.of<Database>(context, listen: false);
+    final manager = QuestionManager(database: database);
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => Questions(
+        manager: manager,
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,10 +32,7 @@ class _QuizState extends State<Quiz> {
         ),
         IconButton(
           icon: Icon(Icons.chat),
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Questions()));
-          },
+          onPressed: () => _openQuiz(context),
         ),
       ],
     );

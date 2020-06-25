@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Quiz {
-  Quiz({
+class QuizModel {
+  QuizModel({
     @required this.id,
     @required this.title,
     @required this.expireOn,
@@ -14,8 +14,8 @@ class Quiz {
   final String teacher;
   final int timeLimit;
 
-  factory Quiz.fromMap({Map<String, dynamic> value, String id}) {
-    return Quiz(
+  factory QuizModel.fromMap({Map<String, dynamic> value, String id}) {
+    return QuizModel(
       id: id,
       title: value['title'],
       expireOn: value['expireOn'],

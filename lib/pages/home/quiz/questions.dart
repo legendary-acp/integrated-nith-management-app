@@ -1,10 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:integratednithmanagementapp/custom_widget/custom_button.dart';
 import 'package:integratednithmanagementapp/custom_widget/custom_radio_button.dart';
+import 'package:integratednithmanagementapp/model/question_model.dart';
+import 'package:integratednithmanagementapp/pages/home/quiz/questions_manager.dart';
 
 class Questions extends StatefulWidget {
+  Questions({@required this.manager});
+  final QuestionManager manager;
+
   @override
   _QuestionsState createState() => _QuestionsState();
 }
@@ -12,6 +16,7 @@ class Questions extends StatefulWidget {
 class _QuestionsState extends State<Questions> {
   bool select = false;
   bool isLast = true;
+
   Widget _buildOption({String option, String statement}) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -52,27 +57,31 @@ class _QuestionsState extends State<Questions> {
     );
   }
 
-  Widget _buildQuestion() {
+  Widget _buildQuestion(QuestionModel questionModel) {
     return Column(
       children: <Widget>[
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
+          height: MediaQuery.of(context).size.height * 0.025,
         ),
-        Container(
-          color: Colors.white,
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              // Fixme: If possible increase size of container according to size of text
-              // else limit question length
-              'Question',
-              style: TextStyle(
-                fontSize: 20,
+        FittedBox(
+          fit: BoxFit.fitHeight,
+          child: Container(
+            color: Colors.white,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                // MAX characters 120
+                questionModel.title,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
               ),
             ),
           ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.05,
         ),
         Container(
           padding: EdgeInsets.all(16.0),
@@ -81,12 +90,27 @@ class _QuestionsState extends State<Questions> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              _buildOption(option: 'A', statement: 'Option A'),
-              _buildOption(option: 'B', statement: 'Option B'),
-              _buildOption(option: 'C', statement: 'Option C'),
-              _buildOption(option: 'D', statement: 'Option D'),
+              _buildOption(
+                option: 'A',
+                statement: questionModel.optionA,
+              ),
+              _buildOption(
+                option: 'B',
+                statement: questionModel.optionB,
+              ),
+              _buildOption(
+                option: 'C',
+                statement: questionModel.optionC,
+              ),
+              _buildOption(
+                option: 'D',
+                statement: questionModel.optionD,
+              ),
             ],
           ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.05,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,7 +147,6 @@ class _QuestionsState extends State<Questions> {
               onPressed: isLast
                   ? () {}
                   : () {
-                      print('object');
                       setState(() {
                         isLast = true;
                       });
@@ -136,6 +159,16 @@ class _QuestionsState extends State<Questions> {
   }
 
   Widget _buildScreen() {
+    final model = QuestionModel(
+      id: 'AAAAAA',
+      title: 'This is Question',
+      optionA: 'A',
+      optionB: 'B',
+      optionC: 'C',
+      optionD: 'D',
+      correct: 'optionA',
+      points: 10,
+    );
     return Column(
       children: <Widget>[
         SizedBox(
@@ -160,14 +193,8 @@ class _QuestionsState extends State<Questions> {
                   color: Color(0xFF17242D)),
             ),
             SizedBox(
-              width: 60,
-              child: FlatButton(
-                child: Text(
-                  'Skip',
-                ),
-                onPressed: () {},
-              ),
-            ),
+              width: MediaQuery.of(context).size.width * 0.1,
+            )
           ],
         ),
         SizedBox(
@@ -208,7 +235,7 @@ class _QuestionsState extends State<Questions> {
             Column(
               children: <Widget>[
                 Text(
-                  '10',
+                  '${model.points}',
                   style: TextStyle(
                     fontSize: 30,
                     color: Color(0xFF2d2017),
@@ -229,8 +256,17 @@ class _QuestionsState extends State<Questions> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.025,
         ),
-        Container(
-          child: _buildQuestion(),
+        FutureBuilder(
+          future: widget.manager.getQuestion(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Container(
+                child: _buildQuestion(snapshot.data),
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
         )
       ],
     );
