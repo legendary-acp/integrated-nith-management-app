@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
     this.height = 50.0,
     this.radius = 20.0,
     this.imageURL,
-    this.elevation =10.0,
+    this.elevation = 10.0,
     this.text,
     this.heightImage,
     this.textColor = Colors.black,
@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
       style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w300,
-        color: Colors.white,
+        color: textColor,
       ),
     );
   }
@@ -40,7 +40,7 @@ class CustomButton extends StatelessWidget {
   Widget logo() {
     return Image.asset(
       imageURL,
-      height: heightImage==null ? height :heightImage ,
+      height: heightImage == null ? height : heightImage,
       width: width,
     );
   }
@@ -55,11 +55,13 @@ class CustomButton extends StatelessWidget {
         child: imageURL == null ? textOnly() : logo(),
         color: bgColor,
         onPressed: pressed,
-        shape: imageURL == null ? RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(this.radius),
-          ),
-        ) : CircleBorder(),
+        shape: imageURL == null
+            ? RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(this.radius),
+                ),
+              )
+            : CircleBorder(),
       ),
     );
   }
