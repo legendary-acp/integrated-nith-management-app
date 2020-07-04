@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class QuestionModel {
-  QuestionModel({
+class Question {
+  Question({
     @required this.id,
     @required this.title,
     @required this.optionA,
@@ -20,8 +20,8 @@ class QuestionModel {
   final String correct;
   final int points;
 
-  factory QuestionModel.fromMap({Map<String, dynamic> value, String id}) {
-    return QuestionModel(
+  factory Question.fromMap({Map<String, dynamic> value, String id}) {
+    return Question(
       id: id,
       title: value['title'],
       optionA: value['optionA'],

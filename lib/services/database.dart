@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:integratednithmanagementapp/model/event_model.dart';
+import 'package:integratednithmanagementapp/model/question_model.dart';
+import 'package:integratednithmanagementapp/model/quiz_model.dart';
 import 'package:integratednithmanagementapp/model/subject_model.dart';
 import 'package:integratednithmanagementapp/model/user_info_model.dart';
 import 'package:integratednithmanagementapp/services/api_path.dart';
@@ -23,6 +25,10 @@ abstract class Database {
   Stream<List<Event>> eventStream({String date});
 
   Stream<List<Event>> urgentEventStream();
+
+  Stream<List<Question>> quizQuestions({String qid});
+
+  Stream<List<Quiz>> quizzes();
 }
 
 class FirestoreDatabase implements Database {
@@ -65,6 +71,21 @@ class FirestoreDatabase implements Database {
         path: APIPath.getAttendance(rollNo: rollNo),
         builder: (data, documentID) =>
             Subject.fromMap(value: data, id: documentID),
+      );
+
+  @override
+  Stream<List<Question>> quizQuestions({String qid}) =>
+      _service.collectionStream(
+        path: APIPath.quizQuestion(qid: qid),
+        builder: (data, documentID) =>
+            Question.fromMap(value: data, id: documentID),
+      );
+
+  @override
+  Stream<List<Quiz>> quizzes() => _service.collectionStream(
+        path: APIPath.quiz(),
+        builder: (data, documentID) =>
+            Quiz.fromMap(value: data, id: documentID),
       );
 
   @override

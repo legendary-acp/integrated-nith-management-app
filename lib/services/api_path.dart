@@ -5,4 +5,6 @@ class APIPath {
   static String getUserInfo({String uid}) => 'user/$uid/';
   static String setUserInfo({String uid}) => 'user/$uid/';
   static String getAttendance({String rollNo}) => 'public/$rollNo/attendance';
+  static String quizQuestion({String qid}) => 'quiz/$qid/questions/';
+  static String quiz() => 'quiz/';
 }

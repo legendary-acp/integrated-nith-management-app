@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:integratednithmanagementapp/pages/home/quiz/questions.dart';
 import 'package:integratednithmanagementapp/pages/home/quiz/questions_manager.dart';
+import 'package:integratednithmanagementapp/pages/home/quiz/questions_screen.dart';
 import 'package:integratednithmanagementapp/services/database.dart';
 import 'package:provider/provider.dart';
 
-class Quiz extends StatefulWidget {
+class QuizScreen extends StatefulWidget {
   @override
-  _QuizState createState() => _QuizState();
+  _QuizScreenState createState() => _QuizScreenState();
 }
 
-class _QuizState extends State<Quiz> {
-  _openQuiz(BuildContext context) {
+class _QuizScreenState extends State<QuizScreen> {
+  _openQuiz(BuildContext context, String qid) {
     final database = Provider.of<Database>(context, listen: false);
-    final manager = QuestionManager(database: database);
+    final manager = QuestionManager(database: database, qid: qid);
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => Questions(
+      builder: (context) => QuestionsScreen(
         manager: manager,
       ),
     ));
@@ -32,7 +32,7 @@ class _QuizState extends State<Quiz> {
         ),
         IconButton(
           icon: Icon(Icons.chat),
-          onPressed: () => _openQuiz(context),
+          onPressed: () => _openQuiz(context, 'HonoCAWjGcbiysDzLcog'),
         ),
       ],
     );
