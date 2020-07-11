@@ -10,7 +10,6 @@ The website aims to achieve automation of following task in its initial phase:
 - Result Display and Supplementary Examination Registration System
 - Timetable and exam date sheet management system
 - Hostel Allotment System
-- Hospital Management System
 - Hostel Complaint System
 
 ## TODO
